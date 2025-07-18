@@ -1,9 +1,3 @@
-declare global {
-  interface Window {
-    toast?: { error: (msg: string) => void };
-  }
-}
-
 'use client';
 
 import { useState } from 'react';
@@ -52,15 +46,20 @@ export default function RegisterForm() {
   const onSubmit = async (data: RegisterFormData) => {
     setIsLoading(true);
     try {
-      await register(data);
-      router.push('/dashboard');
-    } catch (error: any) {
-      const msg = error?.response?.data?.message || error?.message || 'Registrasi gagal, terjadi kesalahan server.';
-      if (typeof window !== 'undefined' && window.toast) {
-        window.toast.error(msg);
-      } else {
-        alert(msg);
+      let email = data.email.trim();
+      // Jika user mengisi tanpa domain, tambahkan otomatis
+      if (!email.endsWith('@squareteam.com')) {
+        // Jika user sudah menulis @, tapi bukan @squareteam.com, tampilkan error
+        if (email.includes('@')) {
+          form.setError('email', { type: 'manual', message: 'Email harus menggunakan domain @squareteam.com' });
+          setIsLoading(false);
+          return;
+        }
+        email = email + '@squareteam.com';
       }
+      await register({ ...data, email });
+      router.push('/dashboard');
+    } catch (error) {
       console.error('Registration error:', error);
     } finally {
       setIsLoading(false);
@@ -206,24 +205,20 @@ export default function RegisterForm() {
               render={({ field }) => (
                 <FormItem className="relative">
                   <FormControl>
-                    <div className="flex w-full">
-                      <div className="relative w-full">
-                        <Input
-                          {...field}
-                          placeholder=" "
-                          className="rounded-r-none peer placeholder-transparent w-full shadow-none border-2 border-gray-300 focus:border-[#0070f3] focus:ring-0"
-                          style={{ boxShadow: 'none', borderColor: field.value ? '#0070f3' : undefined }}
-                        />
-                        <label className="absolute left-3 top-2 text-gray-400 text-sm transition-all duration-200 pointer-events-none bg-white px-1
-                            peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm
-                            peer-focus:-top-3 peer-focus:text-xs peer-focus:text-blue-600
-                            peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-blue-600">
-                          Email
-                        </label>
-                      </div>
-                      <span className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                        @squareteam.com
-                      </span>
+                    <div className="relative w-full">
+                      <Input
+                        {...field}
+                        placeholder=" "
+                        type="email"
+                        className="peer placeholder-transparent w-full shadow-none border-2 border-gray-300 focus:border-[#0070f3] focus:ring-0"
+                        style={{ boxShadow: 'none', borderColor: field.value ? '#0070f3' : undefined }}
+                      />
+                      <label className="absolute left-3 top-2 text-gray-400 text-sm transition-all duration-200 pointer-events-none bg-white px-1
+                          peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm
+                          peer-focus:-top-3 peer-focus:text-xs peer-focus:text-blue-600
+                          peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-blue-600">
+                        Email (hanya username, domain @squareteam.com otomatis)
+                      </label>
                     </div>
                   </FormControl>
                   <FormMessage />

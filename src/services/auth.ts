@@ -12,7 +12,7 @@ export const authService = {
 
   async register(data: RegisterData): Promise<AuthResponse> {
     const response = await apiClient.post('/register', {
-      email: data.email,
+      email: data.email, // kirim email apa adanya
       fullName: `${data.firstName} ${data.lastName}`,
       password: data.password,
     });
