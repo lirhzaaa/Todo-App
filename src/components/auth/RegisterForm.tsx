@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    toast?: { error: (msg: string) => void };
+  }
+}
+
 'use client';
 
 import { useState } from 'react';
@@ -48,7 +54,13 @@ export default function RegisterForm() {
     try {
       await register(data);
       router.push('/dashboard');
-    } catch (error) {
+    } catch (error: any) {
+      const msg = error?.response?.data?.message || error?.message || 'Registrasi gagal, terjadi kesalahan server.';
+      if (typeof window !== 'undefined' && window.toast) {
+        window.toast.error(msg);
+      } else {
+        alert(msg);
+      }
       console.error('Registration error:', error);
     } finally {
       setIsLoading(false);
