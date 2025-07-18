@@ -15,6 +15,10 @@ export const authService = {
       email: `${data.email}@squareteam.com`,
       fullName: `${data.firstName} ${data.lastName}`,
       password: data.password,
+      confirmPassword: data.confirmPassword,
+      phone: data.phone,
+      country: data.country,
+      description: data.description,
     });
     return response.data;
   },
