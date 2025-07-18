@@ -12,13 +12,9 @@ export const authService = {
 
   async register(data: RegisterData): Promise<AuthResponse> {
     const response = await apiClient.post('/register', {
-      email: `${data.email}@squareteam.com`,
+      email: data.email,
       fullName: `${data.firstName} ${data.lastName}`,
       password: data.password,
-      confirmPassword: data.confirmPassword,
-      phone: data.phone,
-      country: data.country,
-      description: data.description,
     });
     return response.data;
   },
