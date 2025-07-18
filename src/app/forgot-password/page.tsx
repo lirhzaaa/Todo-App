@@ -28,7 +28,6 @@ export default function ForgotPasswordPage() {
   const onSubmit = async (data: ForgotPasswordFormData) => {
     setIsLoading(true);
     try {
-      // Simulasi request ke backend
       await new Promise((resolve) => setTimeout(resolve, 1200));
       toast.success("Link reset password telah dikirim ke email Anda!");
       router.push("/login");
