@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,6 +10,7 @@ import { Search, Filter } from 'lucide-react';
 export default function TodoFilters() {
   const { filters, setFilters } = useTodoStore();
   const [searchTerm, setSearchTerm] = useState(filters.search || '');
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const savedFilters = localStorage.getItem('dashboard-filters');
@@ -20,6 +21,17 @@ export default function TodoFilters() {
         if (parsed.search) setSearchTerm(parsed.search);
       } catch {}
     }
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === '/') {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -53,6 +65,7 @@ export default function TodoFilters() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
+              ref={searchInputRef}
               placeholder="Search tods..."
               value={searchTerm}
               onChange={(e) => handleSearch(e.target.value)}
