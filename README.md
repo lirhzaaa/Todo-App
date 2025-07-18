@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# NodeWave Todo App
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+NodeWave Todo App adalah aplikasi todo modern berbasis Next.js 15, TypeScript, dan Tailwind CSS. Aplikasi ini dibuat untuk kebutuhan rekrutmen frontend developer, dengan fitur lengkap mulai dari autentikasi, manajemen todo, hingga dashboard admin.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Fitur Utama
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Sistem Autentikasi**: Login & Register, autentikasi JWT, proteksi route dengan middleware
+- **Manajemen Todo**: Tambah, lihat, edit, hapus todo, tandai selesai/belum selesai, update real-time
+- **Fitur Lanjutan**: Pencarian & filter, pagination, seleksi & hapus todo massal, dashboard admin
+- **UI/UX Modern**: Desain responsif, komponen Shadcn UI & Tailwind CSS, loading & error state
 
-## Learn More
+## 🛠️ Teknologi
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js 15, TypeScript, Tailwind CSS
+- Zustand (state management)
+- React Query (data fetching)
+- React Hook Form + Zod (validasi form)
+- Axios (HTTP client)
+- Sonner (notifikasi)
+- Lucide React (icon)
+- Date-fns (format tanggal)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Cara Menjalankan
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone repo & install dependensi
+   ```bash
+   git clone <repository-url>
+   cd nodewave-todo-app
+   npm install
+   ```
+2. Jalankan development server
+   ```bash
+   npm run dev
+   ```
+3. Buka http://localhost:3000 di browser
 
-## Deploy on Vercel
+## 📁 Struktur Project
+src/
+├── app/         # Halaman Next.js (App Router)
+│   ├── admin/      # Dashboard admin
+│   ├── dashboard/  # Dashboard user
+│   ├── login/      # Login
+│   └── register/   # Register
+├── components/  # Komponen React
+│   ├── admin/      # Komponen admin
+│   ├── auth/       # Komponen autentikasi
+│   ├── layout/     # Komponen layout
+│   ├── todo/       # Komponen todo
+│   └── ui/         # Komponen UI reusable
+├── hooks/       # Custom hooks
+├── services/    # Service API
+├── stores/      # Zustand store
+├── types/       # Tipe TypeScript
+└── utils/       # Utility function
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔒 Proteksi & State Management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Semua route penting dilindungi middleware (`src/middleware.ts`)
+- Hanya user login yang bisa akses dashboard & admin
+- Auth & todo dikelola dengan Zustand (persisten di localStorage)
+- React Query untuk cache & update data
