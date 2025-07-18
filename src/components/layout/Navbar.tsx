@@ -3,8 +3,8 @@
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/authStore';
 import { useTodoStore } from '@/stores/todoStore';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useRef, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { LogOut, User2 } from 'lucide-react';
 import { Avatar } from '@/components/ui/avatar';
 import Image from 'next/image';
@@ -20,6 +20,23 @@ export default function Navbar() {
   const { filters, setFilters } = useTodoStore();
   const [searchTerm, setSearchTerm] = useState(filters.search || '');
   const router = useRouter();
+  const pathname = usePathname();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === '/') {
+        // Hanya aktif di halaman dashboard
+        if (pathname === '/dashboard') {
+          e.preventDefault();
+          searchInputRef.current?.focus();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [pathname]);
+
   const handleSearch = (value: string) => {
     setSearchTerm(value);
     setFilters({ ...filters, search: value, page: 1 });
@@ -34,7 +51,6 @@ export default function Navbar() {
     router.push('/admin');
   };
 
-
   return (
     <nav className="bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
@@ -44,6 +60,7 @@ export default function Navbar() {
               <img src="/star.png" alt="star" className="w-6 h-6" />
             </span>
             <input
+              ref={searchInputRef}
               type="text"
               placeholder="Search (Ctrl+/)"
               value={searchTerm}
