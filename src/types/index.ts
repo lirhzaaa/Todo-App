@@ -55,7 +55,7 @@ export interface RegisterData {
   email: string;
   password: string;
   confirmPassword: string;
-  description?: string;
+  description: string;
 }
 
 export interface CreateTodoData {
