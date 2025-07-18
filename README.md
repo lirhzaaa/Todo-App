@@ -1,44 +1,35 @@
+NodeWave Todo App
+NodeWave Todo App adalah aplikasi todo berbasis Next.js 15, TypeScript, dan Tailwind CSS. Aplikasi ini dibuat untuk kebutuhan rekrutmen frontend developer.
+
+Fitur Utama
+Sistem Autentikasi: Login & Register, autentikasi JWT, proteksi route dengan middleware
+Manajemen Todo: Tambah, lihat, edit, hapus todo, tandai selesai/belum selesai, update real-time
+Fitur Lanjutan: Pencarian & filter, pagination, seleksi & hapus todo massal, dashboard admin
+UI/UX Modern: Desain responsif, komponen Shadcn UI & Tailwind CSS, loading & error state
+
+Teknologi
+Next.js 15, TypeScript, Tailwind CSS
+Zustand (state management)
+React Query (data fetching)
+React Hook Form + Zod (validasi form)
+Axios (HTTP client)
+Sonner (notifikasi)
+Lucide React (icon)
+Date-fns (format tanggal)
 
 
-# NodeWave Todo App
-
-NodeWave Todo App adalah aplikasi todo modern berbasis Next.js 15, TypeScript, dan Tailwind CSS. Aplikasi ini dibuat untuk kebutuhan rekrutmen frontend developer, dengan fitur lengkap mulai dari autentikasi, manajemen todo, hingga dashboard admin.
-
----
-
-## ✨ Fitur Utama
-
-- **Sistem Autentikasi**: Login & Register, autentikasi JWT, proteksi route dengan middleware
-- **Manajemen Todo**: Tambah, lihat, edit, hapus todo, tandai selesai/belum selesai, update real-time
-- **Fitur Lanjutan**: Pencarian & filter, pagination, seleksi & hapus todo massal, dashboard admin
-- **UI/UX Modern**: Desain responsif, komponen Shadcn UI & Tailwind CSS, loading & error state
-
-## 🛠️ Teknologi
-
-- Next.js 15, TypeScript, Tailwind CSS
-- Zustand (state management)
-- React Query (data fetching)
-- React Hook Form + Zod (validasi form)
-- Axios (HTTP client)
-- Sonner (notifikasi)
-- Lucide React (icon)
-- Date-fns (format tanggal)
-
-## 🚀 Cara Menjalankan
-
+Cara Menjalankan
 1. Clone repo & install dependensi
-   ```bash
-   git clone <repository-url>
-   cd nodewave-todo-app
-   npm install
-   ```
+git clone https://github.com/lirhzaaa/Todo-App.git
+cd Todo-App
+npm install
+
 2. Jalankan development server
-   ```bash
-   npm run dev
-   ```
+npm run dev
+
 3. Buka http://localhost:3000 di browser
 
-## 📁 Struktur Project
+Struktur Project
 src/
 ├── app/         # Halaman Next.js (App Router)
 │   ├── admin/      # Dashboard admin
@@ -57,9 +48,9 @@ src/
 ├── types/       # Tipe TypeScript
 └── utils/       # Utility function
 
-## 🔒 Proteksi & State Management
 
-- Semua route penting dilindungi middleware (`src/middleware.ts`)
+Proteksi & State Management
+- Semua route penting dilindungi middleware (middleware.ts)
 - Hanya user login yang bisa akses dashboard & admin
 - Auth & todo dikelola dengan Zustand (persisten di localStorage)
 - React Query untuk cache & update data

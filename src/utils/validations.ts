@@ -7,15 +7,11 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  firstName: z.string().min(1, 'First name is required').refine((val) => val.trim().length > 0, {
-    message: 'First name cannot be empty',
-  }),
-  lastName: z.string().min(1, 'Last name is required').refine((val) => val.trim().length > 0, {
-    message: 'Last name cannot be empty',
-  }),
+  firstName: z.string().min(1, 'First name is required'),
+  lastName: z.string().min(1, 'Last name is required'),
   phone: z.string().min(10, 'Phone number must be at least 10 digits'),
   country: z.string().min(1, 'Country is required'),
-  email: z.string().min(1, 'Email is required').regex(/^[a-zA-Z0-9._-]+$/, 'Invalid email format'),
+  email: z.string().min(1, 'Email is required'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
   confirmPassword: z.string().min(6, 'Confirm password must be at least 6 characters'),
   description: z.string().min(1, 'Description is required'),
