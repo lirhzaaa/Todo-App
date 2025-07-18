@@ -11,11 +11,22 @@ export const authService = {
   },
 
   async register(data: RegisterData): Promise<AuthResponse> {
-    const response = await apiClient.post('/register', {
-      email: `${data.email}@squareteam.com`,
-      fullName: `${data.firstName} ${data.lastName}`,
+    const fullName = `${data.firstName.trim()} ${data.lastName.trim()}`.trim();
+    
+    const emailWithoutSuffix = data.email.replace('@squareteam.com', '');
+    const finalEmail = `${emailWithoutSuffix}@squareteam.com`;
+    
+    if (!fullName) {
+      throw new Error('Full name cannot be empty');
+    }
+    
+    const payload = {
+      email: finalEmail,
+      fullName: fullName,
       password: data.password,
-    });
+    };
+    
+    const response = await apiClient.post('/register', payload);
     return response.data;
   },
 

@@ -48,8 +48,28 @@ export default function RegisterForm() {
     try {
       await register(data);
       router.push('/dashboard');
-    } catch (error) {
-      console.error('Registration error:', error);
+    } catch (error: any) {
+      // Handle specific error messages
+      if (error.response?.data?.errors?.includes('email already used')) {
+        form.setError('email', {
+          type: 'manual',
+          message: 'This email is already registered. Please use a different email.',
+        });
+      } else if (error.response?.data?.errors?.includes('email format is invalid')) {
+        form.setError('email', {
+          type: 'manual',
+          message: 'Please enter a valid email format.',
+        });
+      } else if (error.response?.data?.errors?.includes('fullname is required')) {
+        form.setError('firstName', {
+          type: 'manual',
+          message: 'First name is required.',
+        });
+        form.setError('lastName', {
+          type: 'manual',
+          message: 'Last name is required.',
+        });
+      }
     } finally {
       setIsLoading(false);
     }
