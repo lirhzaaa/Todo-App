@@ -60,7 +60,7 @@ npm run dev
 Akses aplikasi di browser melalui:
 ➡️ http://localhost:3000
 
-Demo (Vercel): https://todo-ay0u2wb22-lirhzas-projects.vercel.app/
+Demo (Vercel): https://nodewave-todo-app-azhril.vercel.app/
 
 ## 📁 Struktur Project
 
