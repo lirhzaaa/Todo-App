@@ -26,7 +26,6 @@ export default function Navbar() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === '/') {
-        // Hanya aktif di halaman dashboard
         if (pathname === '/dashboard') {
           e.preventDefault();
           searchInputRef.current?.focus();
