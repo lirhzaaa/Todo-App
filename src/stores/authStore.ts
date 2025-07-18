@@ -54,7 +54,12 @@ export const useAuthStore = create<AuthStore>()(
             toast.success('Registration successful!');
           }
         } catch (error: any) {
-          toast.error(error.response?.data?.message || 'Registration failed');
+          const errors = error.response?.data?.errors;
+          if (Array.isArray(errors) && errors.length > 0) {
+            toast.error(errors[0]);
+          } else {
+            toast.error(error.response?.data?.message || 'Registration failed');
+          }
           throw error;
         }
       },

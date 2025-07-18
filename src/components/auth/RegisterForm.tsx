@@ -46,7 +46,6 @@ export default function RegisterForm() {
   const onSubmit = async (data: RegisterFormData) => {
     setIsLoading(true);
     try {
-      // Email hanya username, domain otomatis
       const email = `${data.email.trim()}@squareteam.com`;
       await register({ ...data, email });
       router.push('/dashboard');
