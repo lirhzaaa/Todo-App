@@ -18,7 +18,7 @@ export const authService = {
       confirmPassword: data.confirmPassword,
       phone: data.phone,
       country: data.country,
-      description: data.description,
+      description: data.description || '',
     });
     return response.data;
   },
