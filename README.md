@@ -1,10 +1,3 @@
-# 📝 NodeWave Todo App
-
-NodeWave Todo App adalah aplikasi Todo berbasis **Next.js 15**, **TypeScript**, dan **Tailwind CSS**.  
-Aplikasi ini dikembangkan untuk keperluan rekrutmen **Frontend Developer** di NodeWave.
-
----
-
 ## 🚀 Fitur Utama
 
 - 🔐 **Sistem Autentikasi**
@@ -91,19 +84,3 @@ Hanya user yang login yang dapat mengakses halaman dashboard dan admin
 Autentikasi dan todo state dikelola menggunakan Zustand dan disimpan di localStorage
 
 Pengambilan & update data dilakukan melalui React Query untuk efisiensi cache
-
-✅ Status
- Fitur Login & Register
-
- CRUD Todo
-
- Filtering & Pagination
-
- Dashboard Admin (Opsional)
-
- Deploy ke Vercel
-
- Kode bersih & terstruktur
-
-📫 Kontak
-Jika ada pertanyaan lebih lanjut terkait project ini, silakan hubungi saya melalui GitHub Issues kirim email melalui mazhrilnurmaulidan@gmail.com
