@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NodeWave Todo App",
+  title: "TodoApp Todo App",
   description: "A todo application built with Next.js and TypeScript",
 };
 

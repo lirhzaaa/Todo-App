@@ -25,7 +25,7 @@ export default function Home() {
     <div className="min-h-screen bg-white flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold">NodeWave</CardTitle>
+          <CardTitle className="text-3xl font-bold">TodoApp</CardTitle>
           <CardDescription>Welcome to your todo application</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

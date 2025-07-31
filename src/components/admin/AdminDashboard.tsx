@@ -103,7 +103,7 @@ export default function AdminDashboard() {
         className={`bg-white shadow-sm border-r transition-all duration-200 ${sidebarCollapsed ? 'w-14' : 'w-64'}`}
       >
         <div className={`border-b h-16 flex ${sidebarCollapsed ? 'flex-col justify-center items-center p-0' : 'flex-row items-center justify-between p-6'}`}>
-          <h1 className={`text-xl font-bold text-gray-900 transition-opacity duration-200 ${sidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>NodeWave</h1>
+          <h1 className={`text-xl font-bold text-gray-900 transition-opacity duration-200 ${sidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>TodoApp</h1>
           <button
             className={`rounded hover:bg-gray-100 transition-colors ${sidebarCollapsed ? 'mt-0 mb-0 flex items-center justify-center w-full h-10' : 'ml-2 p-1'}`}
             style={sidebarCollapsed ? { minWidth: 0, minHeight: 0 } : {}}
